@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: mak-lead-engine-api
+    env: python
+    plan: free
+    buildCommand: "cd apps/job && pip install -r requirements.txt"
+    startCommand: "cd apps/job && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
